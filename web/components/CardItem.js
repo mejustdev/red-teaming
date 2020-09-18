@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 
-const CardItem = ({ title, subtitle }) => {
+const CardItem = ({ title, subtitle, date, image }) => {
   return (
     <Card className={`fj-card`}>
       <div className='card-body-wrapper'>
@@ -14,11 +14,11 @@ const CardItem = ({ title, subtitle }) => {
           />
           <div>
             <Card.Title className='font-weight-bold mb-1'>Placeholder Author</Card.Title>
-            <Card.Text className='card-date'>Placeholder Date</Card.Text>
+            <Card.Text className='card-date'>{date}</Card.Text>
           </div>
         </Card.Header>
         <div className='view overlay'>
-          <Card.Img src='https://via.placeholder.com/250' alt='Card image cap' />
+          <Card.Img src={image} alt='Card image cap' />
         </div>
         <Card.Body>
           <Card.Title className='card-main-title'>{title}</Card.Title>
