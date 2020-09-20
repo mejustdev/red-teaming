@@ -7,7 +7,6 @@ import CardListItem from 'components/CardListItem';
 import { getAllBlogs } from 'lib/api';
 
 export default function Home({ blogs }) {
-  debugger;
   return (
     <PageLayout>
       <AuthorIntro />
@@ -19,11 +18,15 @@ export default function Home({ blogs }) {
         {blogs.map((blog) => (
           <Col key={blog.slug} md='4'>
             <CardItem
+              author={blog.author}
               title={blog.title}
               subtitle={blog.subtitle}
               date={blog.date}
               image={blog.coverImage}
-              author={blog.author}
+              link={{
+                href: '/blogs/[slug]',
+                as: `/blogs/${blog.slug}`,
+              }}
             />
           </Col>
         ))}
@@ -32,11 +35,7 @@ export default function Home({ blogs }) {
   );
 }
 
-// This function is called during the build (build time)
-// Provides props to your page
-// It will create static page
 export async function getStaticProps() {
-  console.log('Calling getStaticProps');
   const blogs = await getAllBlogs();
   return {
     props: {
